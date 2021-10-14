@@ -53,6 +53,7 @@ INSERT INTO `artists` (`artist`, `beginnings`, `albums`) VALUES
 --
 
 CREATE TABLE `songs` (
+  `id` int NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `name` varchar(45) CHARACTER SET latin1 NOT NULL,
   `artist` varchar(45) CHARACTER SET latin1 NOT NULL,
   `genre` varchar(45) CHARACTER SET latin1 NOT NULL,
@@ -173,7 +174,6 @@ ALTER TABLE `artists`
 -- Indices de la tabla `songs`
 --
 ALTER TABLE `songs`
-  ADD PRIMARY KEY (`name`),
   ADD KEY `artist` (`artist`);
 
 --
@@ -190,7 +190,7 @@ ALTER TABLE `users`
 -- Filtros para la tabla `songs`
 --
 ALTER TABLE `songs`
-  ADD CONSTRAINT `songs_ibfk_1` FOREIGN KEY (`artist`) REFERENCES `artists` (`artist`);
+  ADD CONSTRAINT `songs_ibfk_1` FOREIGN KEY (`artist`) REFERENCES `artists` (`artist`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

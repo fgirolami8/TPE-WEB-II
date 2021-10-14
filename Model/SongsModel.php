@@ -15,7 +15,7 @@ class SongsModel{
         return $canciones;
     } 
     function getSong($id){
-        $sentencia = $this->db->prepare("SELECT * FROM songs WHERE `name`=?");
+        $sentencia = $this->db->prepare("SELECT * FROM songs WHERE `id`=?");
         $sentencia->execute(array($id));
         $song = $sentencia->fetch(PDO::FETCH_OBJ);
         return $song;
@@ -30,9 +30,9 @@ class SongsModel{
             $sentencia->execute(array($cancion,$artista,$genero,$album,$año));
     } 
 
-    function deleteSong($cancion){
-        $sentencia = $this->db->prepare("DELETE FROM `songs` WHERE `name`=?");
-        $sentencia->execute(array($cancion));
+    function deleteSong($id){
+        $sentencia = $this->db->prepare("DELETE FROM `songs` WHERE `id`=?");
+        $sentencia->execute(array($id));
     }
 
     function editSong($cancion, $name, $artist, $genre, $album, $year){

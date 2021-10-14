@@ -36,15 +36,17 @@ h2.session_cerrada{
 .cont_nav{
     margin-top: 100px;
 }
-
+ul, li{
+    list-style-type:none;
+}
 ul.nav{
     display: flex;
     flex-direction: row;
     list-style-type: none;
     padding-left: 0%;
+    justify-content: flex-end;
 }
-.li_nav{
-    width: 30%;
+.a_nav{
     padding: 10px;
     margin: 10px;
     border: solid 2px black;
@@ -52,7 +54,7 @@ ul.nav{
     background-color: rgba(99, 255, 26, 0.315);
     text-align: center;
 }
-.li_nav:hover{
+.a_nav:hover{
     background-color: rgb(79, 250, 0);
 }
 
@@ -60,11 +62,70 @@ ul.nav{
 /*  Estilo SONGSLIST  */
 
 .cajaA{
-    height: 150px;
     margin-bottom: 70px;
     margin-top: 15px;
     border-bottom:none;
 }
+#homeMsg{
+    text-align: center;
+    margin-top:100px;
+    animation: text-shadow .8s infinite;
+    font-size: 2em;
+    font-weight: 900;
+    line-height: 1;
+}
+#homeMsg:hover {
+    animation-play-state: paused;
+}
+    
+
+    @keyframes text-shadow {
+        0% {  
+            transform: translateY(0) rotate(-0.005turn);
+            text-shadow: 
+                0 0 0 #0c2ffb, 
+                0 0 0 #2cfcfd, 
+                0 0 0 #fb203b, 
+                0 0 0 #fefc4b;
+        }
+    
+        20% {  
+            transform: translateY(-0.05em)  rotate(0.005turn);
+            text-shadow: 
+                0 0.125em 0 #7afca5, 
+                0 0.25em 0 #61d656, 
+                0 -0.125em 0 #28b156, 
+                0 -0.25em 0 #2b8341;
+        }
+    
+        40% {  
+            transform: translateY(-0.1em) rotate(-0.005turn);
+            text-shadow: 
+            0 0.125em 0 #7afca5, 
+            0 0.25em 0 #61d656, 
+            0 -0.125em 0 #28b156, 
+            0 -0.25em 0 #2b8341;
+        }
+        
+       60% {
+            transform: translateY(0.1em)  rotate(0.005turn);
+            text-shadow: 
+            0 0.125em 0 #7afca5, 
+            0 0.25em 0 #61d656, 
+            0 -0.125em 0 #28b156, 
+            0 -0.25em 0 #2b8341;
+        }
+    
+        80% {  
+            transform:  translateY(0em) rotate(-0.005turn);
+            text-shadow: 
+            0 0.125em 0 #7afca5, 
+            0 0.25em 0 #61d656, 
+            0 -0.125em 0 #28b156, 
+            0 -0.25em 0 #2b8341;
+        }
+    }
+    
 
 .btnShow{
     color: rgb(255, 255, 255);
@@ -82,7 +143,7 @@ ul.nav{
 .hideoptionAdd{
     display: none;
 }
-.showoptionAdd{
+.optionAdd{
     display: flex;
     flex-direction: column;
     background-color: rgba(0, 0, 0, 0.548);

@@ -23,7 +23,16 @@ class MusicController {
     function viewHome(){
         $this->view->showHome($this->authHelper->log_state());
     }
-
+    function comprobar_existencia_cancion(){
+        //verifico q no halla 2 canciones con igual artista y titulo 
+        $songs = $this->model_songs->getSongs();
+        foreach($songs as $song){
+            if(($_POST['name'] == $song->name) && ($_POST['artist'] == $song->artist)){
+                $this->view->show_SongList_Location();//q muestre datos de cancion 
+                die();
+            }
+        }
+    }
     //ver canciones
     function viewSongs(){
         $artistasFromDB = $this->model_categories->getArtists();//agarro artistas de DB para q se muestren en selesct
@@ -50,6 +59,7 @@ class MusicController {
     //ABM
     function addSong(){
             $this->authHelper->checkLoggedIn();
+            $this->comprobar_existencia_cancion();
             $this->model_songs->addSong($_POST['name'], $_POST['artist'], $_POST['genre'], $_POST['album'], $_POST['year']);
             $this->view->show_SongList_Location();//muestra lista de canciones actualizada (cumpliria como showHomeLocation)     
     }
@@ -72,16 +82,15 @@ class MusicController {
     //EDIT
     function editSong($song){
         $this->authHelper->checkLoggedIn();
-        if(!empty($_POST['name'])&&!empty($_POST['artist'])&&!empty($_POST['genre'])&&!empty($_POST['album'])&&!empty($_POST['year'])){
-            $this->model_songs->editSong($song, $_POST['name'], $_POST['artist'], $_POST['genre'], $_POST['album'], $_POST['year']);
-            $this->view->show_SongList_Location();//q muestre datos de cancion 
-        }
+        //verifico q no halla 2canciones con igual artista ytitulo
+        $this->comprobar_existencia_cancion();
+        $this->model_songs->editSong($song, $_POST['name'], $_POST['artist'], $_POST['genre'], $_POST['album'], $_POST['year']);
+        $this->view->show_SongList_Location();//q muestre datos de cancion 
     }
     function editArtist($artist){
         $this->authHelper->checkLoggedIn();
-        if(!empty($_POST['name'])&&!empty($_POST['beginnings'])&&!empty($_POST['albums'])){
-            $this->model_categories->editArtist($artist, $_POST['name'], $_POST['beginnings'], $_POST['albums']);
-            $this->view->show_ArtistsList_Location();//q muestre datos de artista
-        }
+        $this->model_categories->editArtist($artist, $_POST['name'], $_POST['beginnings'], $_POST['albums']);
+        $this->view->show_ArtistsList_Location();//q muestre datos de artista
     }
+    
 }

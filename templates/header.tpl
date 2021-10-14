@@ -21,9 +21,9 @@
         <div class="cont_nav">
             <nav>
                 <ul class="nav">
-                    <li class="li_nav"><a href="songs">Songs</a></li>
-                    <li class="li_nav"><a href="artists">Artists</a></li>
-                    <li class="li_nav"><a href="{$log_state}">
+                    <li><a class="a_nav" href="songs">Songs</a></li>
+                    <li><a class="a_nav" href="artists">Artists</a></li>
+                    <li><a class="a_nav" href="{$log_state}">
                         {if $log_state eq "login"}Log in
                         {else}Log out
                         {/if}

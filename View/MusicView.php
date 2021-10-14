@@ -11,8 +11,7 @@ class MusicView {
 
     function showHome($log_state) {
         $this->smarty->assign('log_state', $log_state);
-        $this->smarty->display('templates/header.tpl');
-        $this->smarty->display('templates/footer.tpl');
+        $this->smarty->display('templates/home.tpl');
     }
 
     function showSongs($songs, $artists, $log_state) {
