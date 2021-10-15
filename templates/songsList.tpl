@@ -61,7 +61,7 @@
             <h2>{$titulo}</h2>
             {foreach from=$songs item=$song}
                 <li>
-                    <a href="songs/{$song->name}" class="estiloSong">{$song->name}</a>
+                    <a href="songs/{$song->id}" class="estiloSong">{$song->name}</a>
                 </li>
             {{/foreach}}
         {/if}
