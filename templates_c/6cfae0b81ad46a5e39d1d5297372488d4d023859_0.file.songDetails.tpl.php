@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.39, created on 2021-10-12 15:49:50
+/* Smarty version 3.1.39, created on 2021-10-25 01:39:21
   from 'C:\xampp\htdocs\proyectos\musica\templates\songDetails.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.39',
-  'unifunc' => 'content_6165927e31eff3_11720102',
+  'unifunc' => 'content_6175eea91bd6e2_17658508',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '6cfae0b81ad46a5e39d1d5297372488d4d023859' => 
     array (
       0 => 'C:\\xampp\\htdocs\\proyectos\\musica\\templates\\songDetails.tpl',
-      1 => 1633972594,
+      1 => 1635118636,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:footer.tpl' => 1,
   ),
 ),false)) {
-function content_6165927e31eff3_11720102 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6175eea91bd6e2_17658508 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_subTemplateRender('file:header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
 <h3><?php echo $_smarty_tpl->tpl_vars['titulo']->value;?>

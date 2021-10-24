@@ -21,6 +21,7 @@
         <div class="cont_nav">
             <nav>
                 <ul class="nav">
+                    <li><a class="a_nav" href="home">Home</a></li>
                     <li><a class="a_nav" href="songs">Songs</a></li>
                     <li><a class="a_nav" href="artists">Artists</a></li>
                     <li><a class="a_nav" href="{$log_state}">

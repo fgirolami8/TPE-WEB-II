@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.39, created on 2021-10-12 15:50:15
+/* Smarty version 3.1.39, created on 2021-10-25 01:41:40
   from 'C:\xampp\htdocs\proyectos\musica\templates\artistSongs.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.39',
-  'unifunc' => 'content_6165929773f670_42717261',
+  'unifunc' => 'content_6175ef343955e5_33145676',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '75898ce1291d3bf4c11a1654333a6c562f50aaf3' => 
     array (
       0 => 'C:\\xampp\\htdocs\\proyectos\\musica\\templates\\artistSongs.tpl',
-      1 => 1633999162,
+      1 => 1635118808,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:footer.tpl' => 1,
   ),
 ),false)) {
-function content_6165929773f670_42717261 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6175ef343955e5_33145676 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_subTemplateRender('file:header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
 <div>

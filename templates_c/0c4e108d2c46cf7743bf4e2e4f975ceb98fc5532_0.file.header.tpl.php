@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.39, created on 2021-10-13 01:36:11
+/* Smarty version 3.1.39, created on 2021-10-25 01:43:37
   from 'C:\xampp\htdocs\proyectos\musica\templates\header.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.39',
-  'unifunc' => 'content_61661bebf1d079_49992104',
+  'unifunc' => 'content_6175efa90e1e64_72266846',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '0c4e108d2c46cf7743bf4e2e4f975ceb98fc5532' => 
     array (
       0 => 'C:\\xampp\\htdocs\\proyectos\\musica\\templates\\header.tpl',
-      1 => 1634081733,
+      1 => 1635119009,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_61661bebf1d079_49992104 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6175efa90e1e64_72266846 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -45,9 +45,10 @@ function content_61661bebf1d079_49992104 (Smarty_Internal_Template $_smarty_tpl)
         <div class="cont_nav">
             <nav>
                 <ul class="nav">
-                    <li class="li_nav"><a href="songs">Songs</a></li>
-                    <li class="li_nav"><a href="artists">Artists</a></li>
-                    <li class="li_nav"><a href="<?php echo $_smarty_tpl->tpl_vars['log_state']->value;?>
+                    <li><a class="a_nav" href="home">Home</a></li>
+                    <li><a class="a_nav" href="songs">Songs</a></li>
+                    <li><a class="a_nav" href="artists">Artists</a></li>
+                    <li><a class="a_nav" href="<?php echo $_smarty_tpl->tpl_vars['log_state']->value;?>
 ">
                         <?php if ($_smarty_tpl->tpl_vars['log_state']->value == "login") {?>Log in
                         <?php } else { ?>Log out
