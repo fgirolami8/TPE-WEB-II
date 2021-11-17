@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 15-10-2021 a las 01:51:32
+-- Tiempo de generación: 18-11-2021 a las 00:35:50
 -- Versión del servidor: 10.1.38-MariaDB
 -- Versión de PHP: 7.3.2
 
@@ -49,6 +49,26 @@ INSERT INTO `artists` (`artist`, `beginnings`, `albums`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `comments`
+--
+
+CREATE TABLE `comments` (
+  `id` int(10) NOT NULL,
+  `comment` varchar(45) COLLATE utf8mb4_bin NOT NULL,
+  `score` int(10) NOT NULL,
+  `song` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+
+--
+-- Volcado de datos para la tabla `comments`
+--
+
+INSERT INTO `comments` (`id`, `comment`, `score`, `song`) VALUES
+(1, 'waw', 2, 3);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `songs`
 --
 
@@ -66,8 +86,6 @@ CREATE TABLE `songs` (
 --
 
 INSERT INTO `songs` (`id`, `name`, `artist`, `genre`, `album`, `year`) VALUES
-(1, 'A lo verde', 'La Vela Puerca', 'Rock', 'A contraluz', 2004),
-(2, 'A pesar', 'Los Cafres', 'Reggae', '¿Quién da más?', 2005),
 (3, 'Al sol', 'Los Cafres', 'Reggae', '¿Quién da más?', 2005),
 (4, 'Algo peor, algo mejor', 'Callejeros', 'Rock ', 'Rocanroles sin Destino', 2004),
 (5, 'Almenos hoy', 'Los Cafres', 'Reggae', '¿Quién da más?', 2005),
@@ -142,7 +160,13 @@ INSERT INTO `songs` (`id`, `name`, `artist`, `genre`, `album`, `year`) VALUES
 (74, 'Volar', 'NTVG', 'Rock', 'Por lo menos hoy', 2010),
 (75, 'Zafar', 'La Vela Puerca', 'Rock', 'A contraluz', 2004),
 (77, 'Al sol', 'Callejeros', 'w', '2cdsf', 2),
-(81, 'A lo verde', 'Callejeros', 'gyf', '5fd', 56);
+(81, 'A lo verde', 'Callejeros', 'gyf', '5fd', 56),
+(82, 'sample', 'La Vela Puerca', 'Laca', 's', 0),
+(83, 'sample', 'La Vela Puerca', 'Laca', 's', 0),
+(84, 'sample', 'La Vela Puerca', 'Laca', 's', 0),
+(85, 'sample', 'La Vela Puerca', 'Laca', 's', 0),
+(86, 'sample', 'La Vela Puerca', 'Laca', 's', 0),
+(87, 'sample', 'La Vela Puerca', 'Laca', 's', 0);
 
 -- --------------------------------------------------------
 
@@ -152,15 +176,9 @@ INSERT INTO `songs` (`id`, `name`, `artist`, `genre`, `album`, `year`) VALUES
 
 CREATE TABLE `users` (
   `user` varchar(45) NOT NULL,
-  `password` varchar(100) NOT NULL
+  `password` varchar(100) NOT NULL,
+  `rol` int(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `users`
---
-
-INSERT INTO `users` (`user`, `password`) VALUES
-('user', '$2y$10$c7erWEsK/V3BY6KyZbshzuvdTkbFWckll0gK4YzQ269gjZYLZDz.i');
 
 --
 -- Índices para tablas volcadas
@@ -171,6 +189,13 @@ INSERT INTO `users` (`user`, `password`) VALUES
 --
 ALTER TABLE `artists`
   ADD PRIMARY KEY (`artist`);
+
+--
+-- Indices de la tabla `comments`
+--
+ALTER TABLE `comments`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_comments_songs` (`song`);
 
 --
 -- Indices de la tabla `songs`
@@ -190,14 +215,26 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT de la tabla `comments`
+--
+ALTER TABLE `comments`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT de la tabla `songs`
 --
 ALTER TABLE `songs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88;
 
 --
 -- Restricciones para tablas volcadas
 --
+
+--
+-- Filtros para la tabla `comments`
+--
+ALTER TABLE `comments`
+  ADD CONSTRAINT `fk_comments_songs` FOREIGN KEY (`song`) REFERENCES `songs` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `songs`

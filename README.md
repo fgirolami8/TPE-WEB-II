@@ -1,6 +1,22 @@
-oculte edit form y agregar artista
-agregue .gitignore, 
-setie ON DELETE CASCADE ON UPDATE CASCADE
+HICE------------------------------------
 
-en links de ver y borar cancion le deje /songId para resolver ambiguedad en edicion de canciones
-y en model deje WHERE id=?
+creé comentarios en phpmyadmin conforanea song
+agrege rol a users
+habilité ruteo de api con htaccess
+
+
+
+
+
+
+
+
+
+
+FALTA-----------------------------------
+
+dividir bien mvc
+cambiar logstate un poco
+actualizar db import
+
+
