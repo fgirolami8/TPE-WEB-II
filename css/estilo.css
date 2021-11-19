@@ -1,3 +1,31 @@
+
+
+/* COMENTARIOS */
+
+#comments{
+    background: rgba(68, 0, 255, 0.322);
+    width: 50%;
+    padding: 6px;
+    border-radius: 3%;
+}
+.comment{
+    background-color: white;
+    color:black;
+    padding:10px;
+    margin:10px;
+    border-radius: 2%;
+}
+#comm_title{
+    text-align: center;
+}
+#commentForm{
+    margin:10px;
+}
+
+
+
+
+
 /*  Estilos generales  */
 
 body{

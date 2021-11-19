@@ -1,6 +1,7 @@
 <?php
 require_once('View/ApiView.php');
-require_once('Model/SongsModel.php');
+require_once('Model/SongsModel.php');//fijarse si es necesario
+require_once('Model/CommentsModel.php');
 
 abstract class ApiController {
     

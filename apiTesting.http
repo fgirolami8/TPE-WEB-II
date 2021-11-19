@@ -1,1 +1,15 @@
-GET http://localhost/Proyectos/TPE-WEB-II/api/songs/4
+POST http://localhost/Proyectos/TPE-WEB-II/api/comments/songs/3
+Content-Type: application/json
+
+{
+    "comment": "ooooooooooo",
+    "score": 1
+}
+
+###
+
+DELETE http://localhost/Proyectos/TPE-WEB-II/api/comments/47
+
+###
+
+GET http://localhost/Proyectos/TPE-WEB-II/api/comments/songs/3/sort_asc_score
