@@ -29,9 +29,10 @@ class MusicView {
         $this->smarty->display('templates/songDetails.tpl');
     }
 
-    function showArtists($artists, $log_state) {
+    function showArtists($artists, $log_state) { //$rol
         $this->smarty->assign('titulo', 'Artists');
         $this->smarty->assign('log_state', $log_state);
+        //$this->smarty->assign('rol', $rol);
         $this->smarty->assign('artists', $artists);
         $this->smarty->display('templates/artistsList.tpl');
     }

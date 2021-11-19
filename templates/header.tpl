@@ -28,7 +28,11 @@
                         {if $log_state eq "login"}Log in
                         {else}Log out
                         {/if}
-                    </a></li>            
+                    </a></li>
+                    {if $log_state neq "login"}
+                    {else}
+                        <li><a class="a_nav" href="register">Register</a></li>
+                    {/if}        
                 </ul>
             </nav>
         </div>

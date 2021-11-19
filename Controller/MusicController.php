@@ -11,10 +11,12 @@ class MusicController {
     private $model_songs;
     private $view;
     private $authHelper;
+    private $model_login;
 
     function __construct(){
         $this->model_categories = new CategoriesModel();
         $this->model_songs = new SongsModel();
+        $this->model_login = New LoginModel();
         $this->view = new MusicView();
         $this->authHelper = new AuthHelper();
     }
@@ -48,7 +50,9 @@ class MusicController {
     //ver artistas
     function viewArtists(){
         $artists = $this->model_categories->getArtists();
-        $this->view->showArtists($artists, $this->authHelper->log_state());
+        //$user = $_SESSION["user_name"]; //esto esta mal ???
+        //$rol = $this->model_login->get_db_rol($user); //traigo de DB al rol del usuario
+        $this->view->showArtists($artists, /*$rol*/ $this->authHelper->log_state());
     }
     function viewArtist($id){
         $artist = $this->model_categories->getArtist($id);
@@ -58,39 +62,87 @@ class MusicController {
     
     //ABM
     function addSong(){
-            $this->authHelper->checkLoggedIn();
-            $this->comprobar_existencia_cancion();
-            $this->model_songs->addSong($_POST['name'], $_POST['artist'], $_POST['genre'], $_POST['album'], $_POST['year']);
-            $this->view->show_SongList_Location();//muestra lista de canciones actualizada (cumpliria como showHomeLocation)     
+        $this->authHelper->checkLoggedIn();
+        $user = $_SESSION["user_name"]; //esta mal ??
+        $rol = $this->model_login->get_db_rol($user); //traigo usuario con su rol
+        if ($rol->rol == true) { //admin == true / user == false
+                $this->comprobar_existencia_cancion();
+                $this->model_songs->addSong($_POST['name'], $_POST['artist'], $_POST['genre'], $_POST['album'], $_POST['year']);
+                $this->view->show_SongList_Location();//muestra lista de canciones actualizada (cumpliria como showHomeLocation)      
+                die();
+        }
+        else {
+            $this->view->show_SongList_Location();//consultar a fran
+        }
     }
     function addArtist(){
         $this->authHelper->checkLoggedIn();
-        $this->model_categories->addArtist($_POST['name'], $_POST['beginnings'], $_POST['albums']);
-        $this->view->show_ArtistsList_Location();//muestra lista de artistas actualizada (cumpliria como showHomeLocation)       
+        $user = $_SESSION["user_name"]; //esta mal ???
+        $rol = $this->model_login->get_db_rol($user); //traigo usuario con su rol
+        if ($rol->rol == true) { //admin == true / user == false
+            $this->model_categories->addArtist($_POST['name'], $_POST['beginnings'], $_POST['albums']);       
+            $this->view->show_ArtistsList_Location();//muestra lista de artistas actualizada (cumpliria como showHomeLocation)
+            die();
+        }
+        else {
+            $this->view->show_ArtistsList_Location(); //consultar a fran
+        }
     }
     //DELETE
     function deleteSong($song){
         $this->authHelper->checkLoggedIn();
-        $this->model_songs->deleteSong($song);
-        $this->view->show_SongList_Location();//muestra lista de canciones actualizada (cumpliria como showHomeLocation)     
+        $user = $_SESSION["user_name"]; //esta mal ??
+        $rol = $this->model_login->get_db_rol($user); //traigo usuario con su rol
+        if ($rol->rol == true) { //admin == true / user == false
+            $this->model_songs->deleteSong($song);
+            $this->view->show_SongList_Location();//muestra lista de canciones actualizada (cumpliria como showHomeLocation)     
+            die();
+        }
+        else {
+            $this->view->show_SongList_Location(); //consultar a fran
+        }
     }
     function deleteArtist($artist){
         $this->authHelper->checkLoggedIn();
-        $this->model_categories->deleteArtist($artist);
-        $this->view->show_ArtistsList_Location();//muestra lista de artistas actualizada (cumpliria como showHomeLocation)       
+        $user = $_SESSION["user_name"]; //esta mal ??
+        $rol = $this->model_login->get_db_rol($user); //traigo usuario con su rol
+        if ($rol->rol == true) { //admin == true / user == false
+            $this->model_categories->deleteArtist($artist);
+            $this->view->show_ArtistsList_Location();//muestra lista de artistas actualizada (cumpliria como showHomeLocation)       
+            die();
+        }
+        else {
+            $this->view->show_ArtistsList_Location(); //consultar a fran
+        }
     }
     //EDIT
     function editSong($song){
         $this->authHelper->checkLoggedIn();
         //verifico q no halla 2canciones con igual artista ytitulo
-        $this->comprobar_existencia_cancion();
-        $this->model_songs->editSong($song, $_POST['name'], $_POST['artist'], $_POST['genre'], $_POST['album'], $_POST['year']);
-        $this->view->show_SongList_Location();//q muestre datos de cancion 
+        $user = $_SESSION["user_name"]; //esta mal ?
+        $rol = $this->model_login->get_db_rol($user); //traigo usuario con su rol
+        if ($rol->rol == true) { //admin == true / user == false
+            $this->comprobar_existencia_cancion();
+            $this->model_songs->editSong($song, $_POST['name'], $_POST['artist'], $_POST['genre'], $_POST['album'], $_POST['year']);
+            $this->view->show_SongList_Location();//q muestre datos de cancion 
+            die();
+        }
+        else {
+            $this->view->show_SongList_Location(); //consultar a fran
+        }
     }
     function editArtist($artist){
         $this->authHelper->checkLoggedIn();
-        $this->model_categories->editArtist($artist, $_POST['name'], $_POST['beginnings'], $_POST['albums']);
-        $this->view->show_ArtistsList_Location();//q muestre datos de artista
+        $user = $_SESSION["user_name"]; //esta mal ?
+        $rol = $this->model_login->get_db_rol($user); //traigo usuario con su rol
+        if ($rol->rol == true) { //admin == true / user == false
+            $this->model_categories->editArtist($artist, $_POST['name'], $_POST['beginnings'], $_POST['albums']);
+            $this->view->show_ArtistsList_Location();//q muestre datos de artista
+            die();
+        }
+        else {
+            $this->view->show_ArtistsList_Location();
+        }
     }
     
 }

@@ -31,6 +31,13 @@
         case 'logout':
             $loginController->logout();
             break;
+        //register
+        case 'register':
+            $loginController->viewRegister();
+            break;
+        case 'registercheck':
+            $loginController->registerUser();
+            break;
         //musica
         case 'home':
             $musicController->viewHome();
@@ -65,8 +72,6 @@
         case 'editArtist':
             $musicController->editArtist($params[1]);//
             break;
-        // case 'register':
-        //     $loginController->register();
         default:
             echo '404 ERROR page not found';
             break;

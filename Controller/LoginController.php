@@ -8,22 +8,22 @@ class LoginController {
     private $loginModel;
     private $loginView;
 
-    function __construct(){
+    public function __construct(){
         $this->loginModel = new LoginModel();
         $this->loginView = new LoginView();
     }
 
-    function logout(){
+    public function logout(){
         session_start();
         session_destroy();
         $this->loginView->showLogin("Te deslogueaste!");
     }
 
-    function viewLogin(){
+    public function viewLogin(){
         $this->loginView->showLogin();
     }
 
-    function authentify(){
+    public function authentify(){
         
         if (!empty($_POST['user_name']) && !empty($_POST['user_password'])) {
             $form_user = $_POST['user_name'];
@@ -46,12 +46,31 @@ class LoginController {
             
     }
 
-     //function register(){//completar si se implementa
-     //    if(!empty($_POST['user_name'])&&!empty($_POST['user_password'])){
-     //        $user = $_POST['user_name'];
-     //        $password = password_hash($_POST['user_password'], PASSWORD_BCRYPT);
-     //        $this->loginModel->setAdministrator($user, $password);
-     //    }   
-     //}
+    public function viewRegister(){
+        $this->loginView->showRegister();
+    }
+
+    public function registerUser(){
+        if(!empty($_POST['user_name'])&&!empty($_POST['user_password'])){
+            $user = $_POST['user_name'];
+            $passwordForm = $_POST['user_password'];
+            $passwordLogueo = $passwordForm; //esto esta bien??
+            $password = password_hash($passwordForm, PASSWORD_BCRYPT);
+            $this->loginModel->setAdministrator($user, $password);
+            $db_user = $this->loginModel->get_db_user($user);
+            if ($db_user && password_verify($passwordLogueo, $db_user->password)) {
+                session_start();
+                $_SESSION["user_name"] = $user;
+                $this->loginView->show_home_location();
+            }
+            else {
+                $this->loginView->showRegister(""); //falta msj
+            }
+
+        }
+        else{
+            $this->loginView->showRegister("Completa todos los campos!");
+        }   
+    }
 
 }
