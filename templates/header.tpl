@@ -13,10 +13,15 @@
         <h1>Musica 2021 - TPE Especial</h1>
         <b>
             {if $log_state neq "login"}
-                <h2 class="session_iniciada">[SESION DE ADMIN INICIADA]</h2>
+                {if $rol_user eq "true"}
+                    <h2 class="session_iniciadaADMIN">[SESION DE ADMIN INICIADA]</h2>
+                {else}
+                    <h2 class="session_iniciadaUSER">[SESION DE USUARIO INICIADA]</h2>
+                {/if}
             {else}
-                <h2 class="session_cerrada">[INICIE SESION DE ADMIN]</h2>
+                <h2 class="session_cerrada">[INICIE SESION O REGISTRESE!]</h2>
             {/if}
+                
         </b>
         <div class="cont_nav">
             <nav>
@@ -24,6 +29,13 @@
                     <li><a class="a_nav" href="home">Home</a></li>
                     <li><a class="a_nav" href="songs">Songs</a></li>
                     <li><a class="a_nav" href="artists">Artists</a></li>
+                    {if $log_state neq "login"}
+                        {if $rol_user eq "true"}
+                            <li><a class="a_nav" href="users">Users</a></li>
+                            {else}
+                        {/if}
+                    {else}
+                    {/if}  
                     <li><a class="a_nav" href="{$log_state}">
                         {if $log_state eq "login"}Log in
                         {else}Log out

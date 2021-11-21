@@ -9,36 +9,41 @@ class MusicView {
        $this->smarty = new Smarty();
     }
 
-    function showHome($log_state) {
+    function showHome($log_state, $rol_user) {
         $this->smarty->assign('log_state', $log_state);
+        $this->smarty->assign('rol_user', $rol_user);
         $this->smarty->display('templates/home.tpl');
     }
 
-    function showSongs($songs, $artists, $log_state) {
+    function showSongs($songs, $artists, $log_state, $rol_user) {
         $this->smarty->assign('titulo', 'Songs List');
         $this->smarty->assign('songs', $songs);
         $this->smarty->assign('log_state', $log_state);
+        $this->smarty->assign('rol_user', $rol_user);
         $this->smarty->assign('artists', $artists);
         $this->smarty->display('templates/songsList.tpl');
     }
 
-    function showSong($song, $log_state) {
+    function showSong($song, $log_state, $rol_user) {
         $this->smarty->assign('log_state', $log_state);
+        $this->smarty->assign('rol_user', $rol_user);
         $this->smarty->assign('song', $song);
         $this->smarty->assign('titulo', 'Songs details');
         $this->smarty->display('templates/songDetails.tpl');
     }
 
-    function showArtists($artists, $log_state) { //$rol
+    function showArtists($artists, $log_state, $rol_user) { //$rol
         $this->smarty->assign('titulo', 'Artists');
         $this->smarty->assign('log_state', $log_state);
+        $this->smarty->assign('rol_user', $rol_user);
         //$this->smarty->assign('rol', $rol);
         $this->smarty->assign('artists', $artists);
         $this->smarty->display('templates/artistsList.tpl');
     }
 
-    function showArtist($artist, $log_state) {
+    function showArtist($artist, $log_state, $rol_user) {
         $this->smarty->assign('log_state', $log_state);
+        $this->smarty->assign('rol_user', $rol_user);
         $this->smarty->assign('titulo', 'Artist data and songs');
         $this->smarty->assign('artist', $artist);
         $this->smarty->display('templates/artistSongs.tpl');

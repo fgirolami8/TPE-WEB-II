@@ -24,8 +24,12 @@ h2{
 
 /*  Estilo del HEADER and NAV*/
 
-h2.session_iniciada{
+h2.session_iniciadaADMIN{
     color: chartreuse;
+    margin-left: 60%
+}
+h2.session_iniciadaUSER{
+    color: rgb(23, 233, 240);
     margin-left: 60%
 }
 h2.session_cerrada{
@@ -178,5 +182,10 @@ ul.nav{
 
 .estiloBtnDelete{
     background-color: rgba(255, 0, 0, 0.61);
+    margin-top: 10px;
+}
+
+.estiloBtnRol{
+    background-color: rgba(41, 148, 14, 0.61);
     margin-top: 10px;
 }

@@ -2,15 +2,18 @@
 
 require_once "./Model/LoginModel.php";
 require_once "./View/LoginView.php";
+require_once "./Helpers/AuthHelper.php";
 
 class LoginController {
 
     private $loginModel;
     private $loginView;
+    private $authHelper;
 
     public function __construct(){
         $this->loginModel = new LoginModel();
         $this->loginView = new LoginView();
+        $this->authHelper = new AuthHelper();
     }
 
     public function logout(){
@@ -71,6 +74,44 @@ class LoginController {
         else{
             $this->loginView->showRegister("Completa todos los campos!");
         }   
+    }
+
+    public function viewUsers(){
+        $users = $this->loginModel->getAllUsers();
+        $this->loginView->showUsers($users, $this->authHelper->log_state(), $this->authHelper->rol_state(),  "Lista de Usuarios logueados");
+    }
+
+    public function deleteUser($user){
+        $this->authHelper->checkLoggedIn();
+        $rol = $this->authHelper->rol_state(); 
+        if ($rol == "true") {
+            $this->loginModel->deleteUser($user);
+            $this->loginView->show_Users_Location();
+            die();
+        }
+        else {
+            $this->loginView->show_Users_Location(); //arreglar
+        }
+    }
+
+    public function changeRolUser($user){
+        $this->authHelper->checkLoggedIn();
+        $rol = $this->authHelper->rol_state(); 
+        if ($rol == "true") { //chequeo si el que quiere ejecutar esta accion es ADMIN
+            $rolUser = $this->loginModel->get_db_user($user);
+            if ($rolUser->rol == true) {
+                $this->loginModel->changeRolUser($user, false);
+                $this->loginView->show_Users_Location();
+            }
+            else{
+                $this->loginModel->changeRolUser($user, true);
+                $this->loginView->show_Users_Location();
+            }
+        die();
+        }
+        else {
+            $this->loginView->show_Users_Location(); //arreglar
+        }
     }
 
 }

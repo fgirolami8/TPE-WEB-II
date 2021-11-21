@@ -1,5 +1,11 @@
 <?php
+require_once "./Model/LoginModel.php";
 class AuthHelper{
+    private $loginModel;
+
+    public function __construct(){
+       $this->loginModel = New LoginModel(); 
+    }
 
     //para restringir acceso a funciones ABM
     function checkLoggedIn(){
@@ -17,6 +23,18 @@ class AuthHelper{
     }
     //podria hacer q checkloggedin retorne algo para luego usarlo para imprimir msg pero no pinta nada ejecutar logica de esta en showHome x ejemplo
 
+    public function rol_state(){
+        $user = $_SESSION["user_name"];
+        $rol = $this->loginModel->get_db_user($user);
+        $admin = "value";
+        if ($rol->rol == true) {
+            $admin = "true";
+        }
+        else{
+            $admin = "false";
+        }
+        return $admin;
+    }
 
 
 }

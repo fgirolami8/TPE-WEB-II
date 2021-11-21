@@ -72,6 +72,16 @@
         case 'editArtist':
             $musicController->editArtist($params[1]);//
             break;
+        //users
+        case 'users':
+            $loginController->viewUsers();
+            break;
+        case 'deleteUser':
+            $loginController->deleteUser($params[1]);
+            break;
+        case 'changeRolUser':
+            $loginController->changeRolUser($params[1]);
+            break;
         default:
             echo '404 ERROR page not found';
             break;

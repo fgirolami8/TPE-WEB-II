@@ -18,11 +18,21 @@ class LoginModel{
         $sentencia = $this->db->prepare("INSERT INTO `users`(`user`, `password`, `rol`) VALUES(?,?,?)");
         $sentencia->execute(array($user, $pass, false));
     }
-    //ADMIN/USER
-    public function get_db_rol($user){
-        $sentencia = $this->db->prepare('SELECT * FROM users WHERE `user`= ? AND `rol` = ?');
-        $sentencia->execute(array($user, true));
-        return $sentencia->fetch(PDO::FETCH_OBJ);
+    //users
+    public function getAllUsers(){
+        $sentencia = $this->db->prepare('SELECT * FROM users');
+        $sentencia->execute(array());
+        $users = $sentencia->fetchAll(PDO::FETCH_OBJ);
+        return $users;
     }
-
+    //delete user
+    public function deleteUser($user){
+        $sentencia = $this->db->prepare("DELETE FROM `users` WHERE `user`=?");
+        $sentencia->execute(array($user));
+    }
+    //change rol admin/user
+    public function changeRolUser($user, $rol){
+        $sentencia = $this->db->prepare("UPDATE users SET `rol`=? WHERE `user`=?");
+        $sentencia->execute(array($rol, $user));
+    }
 }
